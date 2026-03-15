@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Air & Noise Pollution Monitor | India Real-time Data</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="https://img.icons8.com/color/96/air-element.png">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-wind"></i>
+                <h1>Pollution<span>Monitor</span></h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Live Dashboard</a></li>
+                <li><a href="#cities"><i class="fas fa-city"></i> Cities</a></li>
+                <li><a href="#comparison"><i class="fas fa-chart-bar"></i> Compare</a></li>
+                <li><a href="resources.html"><i class="fas fa-info-circle"></i> Resources</a></li>
+                <li><a href="about.html"><i class="fas fa-question-circle"></i> About</a></li>
+            </ul>
+            <button class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Real-time Air & Noise Pollution Monitoring</h2>
+                <p>Track pollution levels across Indian cities with live data from CPCB, SAFAR, and government sensors</p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <i class="fas fa-city"></i>
+                        <h3>200+</h3>
+                        <p>Cities Monitored</p>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-satellite"></i>
+                        <h3>5000+</h3>
+                        <p>Monitoring Stations</p>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-clock"></i>
+                        <h3>24/7</h3>
+                        <p>Real-time Updates</p>
+                    </div>
+                </div>
+                <a href="#search" class="btn-hero">
+                    <i class="fas fa-search-location"></i> Check Your City
+                </a>
+            </div>
+            <div class="hero-visual">
+                <div class="aqi-badge critical">
+                    <div class="aqi-value">458</div>
+                    <div class="aqi-label">AQI Delhi</div>
+                    <div class="aqi-status">Hazardous</div>
+                </div>
+                <div class="aqi-badge moderate">
+                    <div class="aqi-value">112</div>
+                    <div class="aqi-label">AQI Mumbai</div>
+                    <div class="aqi-status">Moderate</div>
+                </div>
+                <div class="aqi-badge good">
+                    <div class="aqi-value">45</div>
+                    <div class="aqi-label">AQI Shimla</div>
+                    <div class="aqi-status">Good</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Search Section -->
+        <section id="search" class="search-section card">
+            <h2><i class="fas fa-map-marker-alt"></i> Check Pollution in Your City</h2>
+            <div class="search-box">
+                <input type="text" id="citySearch" placeholder="Enter city name (e.g., Delhi, Mumbai, Bangalore)">
+                <button id="searchBtn" class="btn-search">
+                    <i class="fas fa-search"></i> Search
+                </button>
+            </div>
+            <div class="quick-cities">
+                <span class="quick-label">Quick Cities:</span>
+                <button class="city-tag" data-city="Delhi">Delhi</button>
+                <button class="city-tag" data-city="Mumbai">Mumbai</button>
+                <button class="city-tag" data-city="Kolkata">Kolkata</button>
+                <button class="city-tag" data-city="Chennai">Chennai</button>
+                <button class="city-tag" data-city="Bangalore">Bangalore</button>
+                <button class="city-tag" data-city="Hyderabad">Hyderabad</button>
+                <button class="city-tag" data-city="Pune">Pune</button>
+                <button class="city-tag" data-city="Jaipur">Jaipur</button>
+            </div>
+        </section>
+
+        <!-- Live AQI Display -->
+        <section class="aqi-section" id="cities">
+            <h2><i class="fas fa-fire"></i> Current Air Quality Index (AQI)</h2>
+            <div class="aqi-grid" id="aqiGrid">
+                <!-- Data loaded by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Noise Pollution Section -->
+        <section class="noise-section card">
+            <h2><i class="fas fa-volume-up"></i> Noise Pollution Levels</h2>
+            <div class="noise-container">
+                <div class="noise-info">
+                    <h3>Real-time Noise Monitoring</h3>
+                    <p>Noise levels measured in decibels (dB) across major cities</p>
+                    <div class="noise-legend">
+                        <div class="legend-item">
+                            <span class="legend-color" style="background:#2ecc71;"></span>
+                            <span>Below 65 dB (Safe)</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-color" style="background:#f39c12;"></span>
+                            <span>65-75 dB (Moderate)</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-color" style="background:#e74c3c;"></span>
+                            <span>Above 75 dB (Dangerous)</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="noise-meter">
+                    <div class="meter">
+                        <div class="needle" id="noiseNeedle"></div>
+                        <div class="labels">
+                            <span>30 dB</span>
+                            <span>50 dB</span>
+                            <span>70 dB</span>
+                            <span>90 dB</span>
+                            <span>110 dB</span>
+                        </div>
+                    </div>
+                    <div class="noise-value">
+                        <h3 id="currentNoise">68 dB</h3>
+                        <p id="noiseLocation">Delhi - Connaught Place</p>
+                    </div>
+                </div>
+            </div>
+            <div class="noise-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>City</th>
+                            <th>Location</th>
+                            <th>Day Noise</th>
+                            <th>Night Noise</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="noiseTable">
+                        <!-- Data loaded by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Pollution Map -->
+        <section class="map-section card">
+            <h2><i class="fas fa-globe-asia"></i> India Pollution Map</h2>
+            <div class="map-container">
+                <div id="pollutionMap"></div>
+                <div class="map-legend">
+                    <h4>AQI Color Guide</h4>
+                    <div class="legend-item"><span class="color good"></span> Good (0-50)</div>
+                    <div class="legend-item"><span class="color moderate"></span> Moderate (51-100)</div>
+                    <div class="legend-item"><span class="color unhealthy-s"></span> Unhealthy (101-150)</div>
+                    <div class="legend-item"><span class="color unhealthy"></span> Very Unhealthy (151-200)</div>
+                    <div class="legend-item"><span class="color hazardous"></span> Hazardous (201+)</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Major Pollutant Sources -->
+        <section id="comparison" class="sources-section card">
+            <h2><i class="fas fa-industry"></i> Major Pollution Sources</h2>
+            <div class="sources-grid">
+                <div class="source-card">
+                    <i class="fas fa-car"></i>
+                    <h3>Vehicular Emissions</h3>
+                    <p>40-50% of urban pollution</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 45%"></div>
+                    </div>
+                </div>
+                <div class="source-card">
+                    <i class="fas fa-industry"></i>
+                    <h3>Industrial</h3>
+                    <p>20-30% of total pollution</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 25%"></div>
+                    </div>
+                </div>
+                <div class="source-card">
+                    <i class="fas fa-dumpster-fire"></i>
+                    <h3>Construction & Waste</h3>
+                    <p>15-20% contribution</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 18%"></div>
+                    </div>
+                </div>
+                <div class="source-card">
+                    <i class="fas fa-wind"></i>
+                    <h3>Dust & Natural</h3>
+                    <p>10-15% contribution</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 12%"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Health Advisory -->
+        <section class="health-section card">
+            <h2><i class="fas fa-heartbeat"></i> Health Advisory</h2>
+            <div class="health-grid">
+                <div class="advisory good">
+                    <h3><i class="fas fa-check-circle"></i> Good (0-50 AQI)</h3>
+                    <p>Air quality is satisfactory. No health impacts expected.</p>
+                </div>
+                <div class="advisory moderate">
+                    <h3><i class="fas fa-info-circle"></i> Moderate (51-100)</h3>
+                    <p>Acceptable air quality. Sensitive individuals should limit prolonged outdoor exertion.</p>
+                </div>
+                <div class="advisory unhealthy">
+                    <h3><i class="fas fa-exclamation-triangle"></i> Unhealthy (101-150)</h3>
+                    <p>General public may experience health effects. Sensitive groups should avoid outdoor activity.</p>
+                </div>
+                <div class="advisory hazardous">
+                    <h3><i class="fas fa-skull-crossbones"></i> Hazardous (301+)</h3>
+                    <p>Health warning of emergency conditions. Everyone should avoid all outdoor activity.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Official Data Sources -->
+        <section class="sources-section card">
+            <h2><i class="fas fa-database"></i> Official Data Sources</h2>
+            <div class="sources-list">
+                <a href="https://app.cpcbccr.com/AQI_India/" target="_blank" class="source-link">
+                    <i class="fas fa-external-link-alt"></i>
+                    <div>
+                        <h4>CPCB AQI India</h4>
+                        <p>Central Pollution Control Board - Official AQI Data</p>
+                    </div>
+                </a>
+                <a href="https://safar.tropmet.res.in/" target="_blank" class="source-link">
+                    <i class="fas fa-external-link-alt"></i>
+                    <div>
+                        <h4>SAFAR System</h4>
+                        <p>Air Quality Forecasting for Major Cities</p>
+                    </div>
+                </a>
+                <a href="https://www.aqicn.org/map/india/" target="_blank" class="source-link">
+                    <i class="fas fa-external-link-alt"></i>
+                    <div>
+                        <h4>AQICN World Map</h4>
+                        <p>Real-time Global Air Quality Map</p>
+                    </div>
+                </a>
+                <a href="https://cpcb.nic.in/noise-pollution/" target="_blank" class="source-link">
+                    <i class="fas fa-external-link-alt"></i>
+                    <div>
+                        <h4>CPCB Noise Monitoring</h4>
+                        <p>Official Noise Pollution Data</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo">
+                        <i class="fas fa-wind"></i>
+                        <h3>Pollution<span>Monitor</span></h3>
+                    </div>
+                    <p>Real-time air and noise pollution tracking across India. Data sourced from government monitoring stations.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="dashboard.html">Live Dashboard</a></li>
+                        <li><a href="#cities">City Data</a></li>
+                        <li><a href="resources.html">Health Resources</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Data Sources</a></li>
+                        <li><a href="#">API Access</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-envelope"></i> contact@pollutionmonitor.in</p>
+                    <p><i class="fas fa-phone"></i> +91-1800-123-4567</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Delhi, India</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 PollutionMonitor.in | Data updates every hour from CPCB, SAFAR, and government sources</p>
+                <p class="disclaimer">Disclaimer: This is a demonstration website. Real-time data may vary. Always refer to official sources for critical decisions.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="api.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

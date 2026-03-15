@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Pollution Dashboard | Real-time Monitoring</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .dashboard-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .dashboard-card.wide {
+            grid-column: span 2;
+        }
+        .page-title {
+            color: var(--primary);
+            margin: 2rem 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .pollutant-meter {
+            margin: 1rem 0;
+        }
+        .meter-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+        .meter-bar {
+            height: 20px;
+            background: #eee;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .meter-fill {
+            height: 100%;
+            border-radius: 10px;
+        }
+        .health-index {
+            text-align: center;
+            padding: 2rem;
+        }
+        .index-value {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .index-value.low { color: #2ecc71; }
+        .index-value.moderate { color: #f1c40f; }
+        .index-value.high { color: #e74c3c; }
+        .recommendations {
+            margin-top: 1.5rem;
+            text-align: left;
+        }
+        .recommendations p {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        @media (max-width: 768px) {
+            .dashboard-card.wide {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-wind"></i>
+                <h1>Pollution<span>Monitor</span></h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="dashboard.html" class="active"><i class="fas fa-tachometer-alt"></i> Live Dashboard</a></li>
+                <li><a href="index.html#cities"><i class="fas fa-city"></i> Cities</a></li>
+                <li><a href="resources.html"><i class="fas fa-info-circle"></i> Resources</a></li>
+                <li><a href="about.html"><i class="fas fa-question-circle"></i> About</a></li>
+            </ul>
+            <button class="menu-toggle">
+                <i class="fas fa-bars">.</i>
+            </button>
+        </div>
+    </nav>
+
+    <main class="container">
+        <h1 class="page-title"><i class="fas fa-tachometer-alt"></i> Live Pollution Dashboard</h1>
+        
+        <div class="dashboard-grid">
+            <!-- AQI Trends Chart -->
+            <div class="dashboard-card wide">
+                <h3><i class="fas fa-chart-line"></i> AQI Trends (Last 24 Hours)</h3>
+                <canvas id="aqiTrendChart"></canvas>
+            </div>
+            
+            <!-- Real-time Pollutant Levels -->
+            <div class="dashboard-card">
+                <h3><i class="fas fa-smog"></i> Pollutant Levels - Delhi</h3>
+                <div id="pollutantMeters">
+                    <div class="pollutant-meter">
+                        <div class="meter-label">
+                            <span>PM2.5</span>
+                            <span>425 µg/m³</span>
+                        </div>
+                        <div class="meter-bar">
+                            <div class="meter-fill" style="width: 85%; background: #e74c3c;"></div>
+                        </div>
+                    </div>
+                    <div class="pollutant-meter">
+                        <div class="meter-label">
+                            <span>PM10</span>
+                            <span>580 µg/m³</span>
+                        </div>
+                        <div class="meter-bar">
+                            <div class="meter-fill" style="width: 96%; background: #c0392b;"></div>
+                        </div>
+                    </div>
+                    <div class="pollutant-meter">
+                        <div class="meter-label">
+                            <span>NO₂</span>
+                            <span>85 ppb</span>
+                        </div>
+                        <div class="meter-bar">
+                            <div class="meter-fill" style="width: 65%; background: #3498db;"></div>
+                        </div>
+                    </div>
+                    <div class="pollutant-meter">
+                        <div class="meter-label">
+                            <span>O₃</span>
+                            <span>45 ppb</span>
+                        </div>
+                        <div class="meter-bar">
+                            <div class="meter-fill" style="width: 30%; background: #9b59b6;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- City Comparison -->
+            <div class="dashboard-card">
+                <h3><i class="fas fa-balance-scale"></i> City Comparison</h3>
+                <canvas id="cityComparisonChart"></canvas>
+            </div>
+            
+            <!-- Health Impact Index -->
+            <div class="dashboard-card">
+                <h3><i class="fas fa-heartbeat"></i> Health Impact</h3>
+                <div class="health-index">
+                    <div class="index-value high">8.5</div>
+                    <p>High Health Risk Today</p>
+                    <div class="recommendations">
+                        <p><i class="fas fa-mask"></i> Wear N95 mask outdoors</p>
+                        <p><i class="fas fa-home"></i> Stay indoors if possible</p>
+                        <p><i class="fas fa-wind"></i> Use air purifier</p>
+                        <p><i class="fas fa-tint"></i> Use humidifier</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Noise Pollution Timeline -->
+            <div class="dashboard-card wide">
+                <h3><i class="fas fa-wave-square"></i> Noise Pollution Timeline</h3>
+                <canvas id="noiseTimelineChart"></canvas>
+            </div>
+            
+            <!-- Pollution Sources -->
+            <div class="dashboard-card">
+                <h3><i class="fas fa-industry"></i> Source Contribution</h3>
+                <canvas id="sourcePieChart"></canvas>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2023 PollutionMonitor.in | Live Dashboard updates every 5 minutes</p>
+                <p class="disclaimer">Real-time simulation. For official data, visit CPCB.gov.in</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>

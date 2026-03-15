@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Pollution Monitor</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .about-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, #0e3a5c 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .team-card {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .team-card img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+        }
+        .mission-statement {
+            background: #e8f4fc;
+            padding: 3rem;
+            border-radius: 15px;
+            margin: 3rem 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-wind"></i>
+                <h1>Pollution<span>Monitor</span></h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="index.html#cities"><i class="fas fa-city"></i> Cities</a></li>
+                <li><a href="resources.html"><i class="fas fa-info-circle"></i> Resources</a></li>
+                <li><a href="about.html" class="active"><i class="fas fa-question-circle"></i> About</a></li>
+            </ul>
+            <button class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <header class="about-hero">
+        <div class="container">
+            <h1>About Pollution Monitor</h1>
+            <p>Transparent, real-time pollution data for a healthier India</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="about-content">
+            <section class="mission-statement">
+                <h2><i class="fas fa-bullseye"></i> Our Mission</h2>
+                <p>To provide accurate, real-time air and noise pollution data to empower citizens, inform policymakers, and create cleaner, healthier cities across India.</p>
+            </section>
+
+            <section>
+                <h2><i class="fas fa-history"></i> Our Story</h2>
+                <p>Founded in 2020, Pollution Monitor began as a small project to visualize government pollution data in a more accessible format. Today, we aggregate data from multiple sources including CPCB, SAFAR, and hundreds of monitoring stations across India.</p>
+                <p>Our platform serves over 1 million monthly users including researchers, students, environmental activists, and concerned citizens.</p>
+            </section>
+
+            <section>
+                <h2><i class="fas fa-database"></i> Our Data Sources</h2>
+                <p>We collect and process data from:</p>
+                <ul>
+                    <li>Central Pollution Control Board (CPCB)</li>
+                    <li>SAFAR Air Quality System</li>
+                    <li>State Pollution Control Boards</li>
+                    <li>NASA Satellite Data</li>
+                    <li>Ground-based Monitoring Stations</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2><i class="fas fa-users"></i> Our Team</h2>
+                <div class="team-grid">
+                    <div class="team-card">
+                        <img src="" alt="Team Member">
+                        <h3>Krish Patel</h3>
+                        <p>Web Developer</p>
+                        <p>Full-stack Development</p>
+                    </div>
+                    <div class="team-card">
+                        <img src="" alt="Team Member">
+                        <h3>Preet</h3>
+                        <p>Data Analyst</p>
+                        <p>Specializes in Pollution Modeling</p>
+                    </div>
+                    <div class="team-card">
+                        <img src="" alt="Team Member">
+                        <h3>Aksh Patel</h3>
+                        <p>Software Developer</p>
+                        <p>Full-stack Development</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2><i class="fas fa-handshake"></i> Partnerships</h2>
+                <p>We collaborate with:</p>
+                <ul>
+                    <li>Ministry of Environment, Forest & Climate Change</li>
+                    <li>Indian Institute of Technology (IIT) Delhi</li>
+                    <li>Centre for Science and Environment (CSE)</li>
+                    <li>World Health Organization (WHO) India</li>
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2023 PollutionMonitor.in | Contact: contact@pollutionmonitor.in</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

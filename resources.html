@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources | Pollution Health & Safety</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .resources-hero {
+            background: linear-gradient(135deg, var(--success) 0%, #229954 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        .resource-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        .resource-card:hover {
+            transform: translateY(-5px);
+        }
+        .resource-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        .download-links {
+            margin-top: 1rem;
+        }
+        .download-link {
+            display: block;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            text-decoration: none;
+            color: var(--dark);
+            transition: background 0.3s;
+        }
+        .download-link:hover {
+            background: #eef7ff;
+        }
+        .health-tips {
+            background: #e8f4fc;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+        .tip-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-wind"></i>
+                <h1>Pollution<span>Monitor</span></h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="index.html#cities"><i class="fas fa-city"></i> Cities</a></li>
+                <li><a href="resources.html" class="active"><i class="fas fa-info-circle"></i> Resources</a></li>
+                <li><a href="about.html"><i class="fas fa-question-circle"></i> About</a></li>
+            </ul>
+            <button class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <header class="resources-hero">
+        <div class="container">
+            <h1>Pollution Health & Safety Resources</h1>
+            <p>Protect yourself and your family from air and noise pollution</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="health-tips">
+            <h2><i class="fas fa-shield-alt"></i> Immediate Protection Tips</h2>
+            <div class="tip-item">
+                <i class="fas fa-mask" style="color:#e74c3c;"></i>
+                <div>
+                    <h3>Wear N95/N99 Masks</h3>
+                    <p>Use certified masks when AQI is above 150. Change masks every 8 hours of use.</p>
+                </div>
+            </div>
+            <div class="tip-item">
+                <i class="fas fa-home" style="color:#3498db;"></i>
+                <div>
+                    <h3>Create Clean Air Spaces</h3>
+                    <p>Use air purifiers with HEPA filters. Keep windows closed during high pollution hours.</p>
+                </div>
+            </div>
+            <div class="tip-item">
+                <i class="fas fa-leaf" style="color:#27ae60;"></i>
+                <div>
+                    <h3>Air Purifying Plants</h3>
+                    <p>Keep snake plants, peace lilies, and spider plants indoors to improve air quality.</p>
+                </div>
+            </div>
+            <div class="tip-item">
+                <i class="fas fa-ear-deaf" style="color:#9b59b6;"></i>
+                <div>
+                    <h3>Noise Protection</h3>
+                    <p>Use earplugs or noise-cancelling headphones in areas with noise above 75 dB.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2><i class="fas fa-download"></i> Downloadable Resources</h2>
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <h3>AQI Guide PDF</h3>
+                    <p>Complete guide to understanding Air Quality Index and health impacts.</p>
+                    <div class="download-links">
+                        <a href="#" class="download-link">Download English Version (PDF, 2MB)</a>
+                        <a href="#" class="download-link">Download Hindi Version (PDF, 2.1MB)</a>
+                    </div>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3>Health Advisory</h3>
+                    <p>Medical guidelines for different pollution levels from health experts.</p>
+                    <div class="download-links">
+                        <a href="#" class="download-link">For Children & Elderly</a>
+                        <a href="#" class="download-link">For Asthma Patients</a>
+                        <a href="#" class="download-link">For Heart Patients</a>
+                    </div>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Pollution Data Reports</h3>
+                    <p>Monthly and annual pollution reports for major Indian cities.</p>
+                    <div class="download-links">
+                        <a href="#" class="download-link">2023 Annual Report (PDF, 5MB)</a>
+                        <a href="#" class="download-link">City-wise Comparison Data</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2><i class="fas fa-external-link-alt"></i> External Resources</h2>
+            <div class="sources-list">
+                <a href="https://www.who.int/airpollution/en/" target="_blank" class="source-link">
+                    <i class="fas fa-external-link-alt"></i>
+                    <div>
+                        <h4>WHO Air Pollution</h4>
+                        <p>World Health Organization guidelines and research</p>
+                    </div>
+                </a>
+                <a href="https://www.moef.gov.in/" target="_blank" class="source-link">
+                    <i class="fas fa-external-link-alt"></i>
+                    <div>
+                        <h4>MoEFCC India</h4>
+                        <p>Ministry of Environment, Forest & Climate Change</p>
+                    </div>
+                </a>
+                <a href="https://www.cseindia.org/" target="_blank" class="source-link">
+                    <i class="fas fa-external-link-alt"></i>
+                    <div>
+                        <h4>Centre for Science & Environment</h4>
+                        <p>Research and advocacy organization</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <section>
+            <h2><i class="fas fa-mobile-alt"></i> Mobile Apps</h2>
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <i class="fas fa-mobile-alt fa-3x" style="color:#3498db; margin-bottom:1rem;"></i>
+                    <h3>SAFAR Air</h3>
+                    <p>Official government app for air quality forecasts</p>
+                    <div class="download-links">
+                        <a href="#" class="download-link"><i class="fab fa-google-play"></i> Google Play</a>
+                        <a href="#" class="download-link"><i class="fab fa-app-store"></i> App Store</a>
+                    </div>
+                </div>
+                <div class="resource-card">
+                    <i class="fas fa-tablet-alt fa-3x" style="color:#2ecc71; margin-bottom:1rem;"></i>
+                    <h3>CPCB Sameer</h3>
+                    <p>Real-time pollution data from CPCB</p>
+                    <div class="download-links">
+                        <a href="#" class="download-link"><i class="fab fa-google-play"></i> Google Play</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2023 PollutionMonitor.in | For emergencies, call National Pollution Control Board: 1800-180-5555</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
